@@ -23,7 +23,7 @@ class Student:
     def ReceiveProject(self, pubsub_evt):
         projects_dict = pubsub_evt.data
         self.project = projects_dict[self.name]
-        print "%s: I've received the project %s" % (self.name, self.project)
+        print ("%s: I've received the project %s" % (self.name, self.project))
 
     def ReceiveGrade(self, pubsub_evt):
         grades_dict = pubsub_evt.data
@@ -32,8 +32,8 @@ class Student:
             self.mood = ":)"
         else:
             self.mood = ":("
-        print "%s: I've received the grade %d %s" % (self.name, self.grade, self.mood)
-
+        print ("%s: I've received the grade %d %s" % (self.name, self.grade, self.mood)
+)
 
 class Teacher:
     def __init__(self, name, course):
@@ -41,10 +41,10 @@ class Teacher:
         self.course = course
 
     def SendMessage(self):
-        print "%s: Telling students the projects" % (self.name)
+        print ("%s: Telling students the projects" % (self.name))
         Publisher.sendMessage("Set Student Project", self.course.projects_dict)
 
-        print "\n%s: Telling students the grades" % (self.name)
+        print ("\n%s: Telling students the grades" % (self.name))
         Publisher.sendMessage("Set Student Grade", self.course.grades_dict)
 
 
